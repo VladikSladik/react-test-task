@@ -2,7 +2,7 @@ const TodoItem = ({ todo }) => {
   const { title, completed } = todo;
 
   const handleChange = () => {
-    completed = !completed; // Ошибка: нельзя изменять props напрямую
+    completed = !completed;
   };
 
   return (

@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import TodoItem from "./TodoItem";
-
+import { fetchTodos } from "./api";
 const TodoList = () => {
   const [todos, setTodos] = useState();
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos?_limit=5")
+    fetchTodos()
       .then((res) => res.json())
       .then((data) => {
         setTodos(data);
       });
-  }, [todos]); // ❌ Ошибка: бесконечный цикл
+  }, [todos]);
 
   const addTodo = () => {
     const newTodo = {
@@ -19,7 +19,6 @@ const TodoList = () => {
       completed: false,
     };
 
-    // ❌ Ошибка: используем неактуальное значение todos
     setTodos([...todos, newTodo]);
   };
 
